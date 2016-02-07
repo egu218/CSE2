@@ -68,6 +68,7 @@ public class Arithmetic{
        double payDue = truncateToTwoDecimals(totalPurchase);
        
        //following print statements prints item type costs before tax, sales tax for each item, 
+       //   total items cost before tax, total sales tax for all items, and grand sum total of the purchase
        System.out.println("-------------------------Your Very Detailed Receipt!--------------------------");
        System.out.println("Individual Item Type Costs (before sales tax) | Individual Item Type Sales Tax");
        System.out.println("Ho-Ho-Ho! Santa Hat:             $" + costSantaHats + "       |             $" + taxHats);
