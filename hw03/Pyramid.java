@@ -3,7 +3,7 @@
 // Prof. Brian Chen
 // CSE 002 Section 111
 
-// HW03: Convert program takes in user inputs of doubles representing measurements of a pyramid,
+// HW03: Pyramid program takes in user inputs of doubles representing measurements of a pyramid,
 //  the side of a square base, and the height, and prints out the calculated volume
 
 import java.util.Scanner;       //import Scanner class for getting user input
