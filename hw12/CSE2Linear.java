@@ -1,11 +1,11 @@
 // Eddison Ugaddan
-// April 18, 2016
+// April 20, 2016
 // Prof. Brian Chen
 // CSE 002 Section 111
 
 // HW12: Linear program:
 //  (1) fills a sorted array consisting of grades inputted in ascending order from user,
-//      and by linear search tries to find the search term also provided by the user
+//      and by binary (instead of linear) search tries to find the search term also provided by the user
 //  (2) scrambles the sorted array in (1),
 //      and by linear search tries to find the search term again provided by the user
 
@@ -21,7 +21,7 @@ public class CSE2Linear{
         sortedGrades = promptGrades(size);
         System.out.println("Sorted:");
         printArray(sortedGrades);
-        linearSearch(sortedGrades, promptInt(), true);
+        binarySearch(sortedGrades, promptInt());
         
         scrambledGrades = scrambleArray(copyArray(sortedGrades), 3); //scramble a copy of 
                                                                      //  sortedGrades 3 times
@@ -105,6 +105,40 @@ public class CSE2Linear{
         }//end while loop
         return input;
     }//end promptInt method
+    
+    public static void binarySearch(int[] array, int term){
+        int iterations = 0;
+        if (term > array[array.length-1] || term < array[0]){   //search term is outside max/min range of array2?
+            iterations++;
+            System.out.println("\tSearched term is out of bounds!  Goodbye!"
+                + "\n" + term + " not found after " + iterations + " iterations");
+        }//end if statement
+        else {  //search term must be in valid range!
+            int low = 0;
+            int high = array.length-1;
+            boolean found = false;
+            
+            while (low <= high && found == false){
+                int mid = low + (high-low)/2;   //update midpoint index
+                iterations++;
+                if (term == array[mid]){    //search term already at midpoint?
+                    System.out.printf("\t%d was located after %d iterations\n", term, iterations);
+                    found = true;
+                }
+                else if (term > array[mid]){//search term of value greater than that at midpoint?
+                    //System.out.printf("\n%d %d %d", array[low], array[mid], array[high]); //for debugging
+                    low = mid+1;            //update low index
+                }
+                else {  //search term must be of value less than that at midpoint!
+                    //System.out.printf("\n%d %d %d", array[low], array[mid], array[high]); //for debugging
+                    high = mid-1;           //update high index
+                }//end else statement
+                if (low > high){
+                    System.out.printf("\t%d was not found...after %d iterations\n", term, iterations);
+                }//end if statement
+            }//end while loop
+        }//end else statement
+    }//end binarySearch method
     
     //search forwards through input array for search term
     public static void linearSearch(int[] array, int term, boolean sorted){
